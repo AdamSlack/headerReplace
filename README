@@ -1,0 +1,34 @@
+This script is used to update the top part of a header in all .SAS files found within a specified directory.     
+The purpose of this is to ensure that the header used across all files in a study is consistent and up to date   
+with the current standard.                                                                                       
+                                                                                                                 
+Should the standard change this script can be used to update all in a given directory to reflect this change.    
+                                                                                                                 
+To use this script ensure that this .py file has the header(.txt) file that is to be used present in the same    
+directory. if there is no header available for this script to use, then it will fail. no changes to files will be
+made.                                                                                                            
+                                                                                                                 
+this program will not alter anything in the SAS files, BESIDES the top section of the header. The top section    
+currently begins with a line that starts '/*===========' and ends with the first line that starts '___________'  
+should this change, then the script will need updating.
+
+Can be run from the command line.
+Or utilised from within your own Python Program.
+
+Required arguments
+  -d or --dir		      The location of the [d]irectory that contains files you want to updated.
+  -m or --multiple	  The location of a file that contains [m]ultiple directory locations.
+  -f or --file		    The location of the header [f]ile that will be used to replace original headers.
+  
+Optional arguments
+  -v or --versionhistory 	an optional flag that indicates if you want the version history of the file to be cleared.
+  
+Example Usage
+
+  Single Directory:
+    Python headerReplace.py –d=W:\19950205\analysis\final\figures –f=header.txt -v
+    
+  Multiple Directories:
+    Python headerReplace.py –m=dirs.txt –f=header.txt -v
+      
+
