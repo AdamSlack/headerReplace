@@ -26,25 +26,31 @@
 #   get it sorted!                                                                                                     #
 #                                                                                                                      #
 ########################################################################################################################
-import os
-import argparse
+import os, argparse
 
 # Needs to be turned into an object...
 histNeeded = False
 
 
-def listAvailableFiles(directory):
+def listAvailableFiles(directory, suffix='.sas'):
     """ Creates a list of all files that exist within a directory that are readable """
     readableFiles = []
-    for file in os.listdir(directory):
-        if file.endswith(".sas") and os.access(directory + "\\" + file, os.R_OK):  # i.e. the file can be checked.
-            readableFiles.append(file)
 
-    print(str(len(readableFiles)) + ' files located.')
+    try: # Try listing files in a directory.
+        dirList = os.listdir(directory)
+    except FileNotFoundError: # don't break if the dir provided is not found
+        print('Invalid Directory Specified')
+    else: # if it's good, continue as planned
+        for file in dirList:
+            if file.endswith(suffix) and os.access(directory + "\\" + file, os.R_OK):  # i.e. the file can be checked.
+                readableFiles.append(file)
+
+        print(str(len(readableFiles)) + ' files located.')
 
     return readableFiles
 
 
+# should get around SCCS... 100% shouldn't be done this way...
 def setPermissions(directory, files):
     """ sets the permissions of all files to 777 """
     for file in files:
@@ -53,16 +59,23 @@ def setPermissions(directory, files):
 
 def readFile(filePath):
     """ reads a file, returning an array of lines in the file """
-    file = open(filePath)
-    lines = []
-    for l in file:
-        lines.append(l)
+    lines = []      # or even lines = [l for l in file]
+    try:
+        file = open(filePath)
+    except FileNotFoundError:
+        print("Invalid File Path Provided")
+    else:
+        for l in file:
+            lines.append(l)
     return lines
 
 
 def findExpression(lines, expr):
     """ Searches an array of strings for an expression. returning the line idx that contains it"""
     idx = -1
+    if expr == "":
+        return idx
+
     for i in range(len(lines)):
         if expr in lines[i]:
             idx = i
@@ -92,7 +105,7 @@ def writeFile(filePath, file):
     f.close()
 
 
-def updateHeaders(directory, headerFile):
+def updateHeaders(directory, headerFile, startExp =  "/*====", endExp = "_______"):
     """ goes through all sas files in a directory and updates their headers """
     global histNeeded
     print('Updating headers for files in: ' + directory)
@@ -104,12 +117,12 @@ def updateHeaders(directory, headerFile):
     for f in fileNames:  # go through each file in the directory.
         path = directory + "\\" + f
         fileLines = readFile(path)
-        start = findExpression(fileLines, "/*====")  # used to mark the start of the area to replace
+        start = findExpression(fileLines, startExp)  # used to mark the start of the area to replace
 
         if start == -1:
             break  # the start of the header was not found. Skip this file since it's not valid. don't wanna ruin stuff
 
-        end = findExpression(fileLines, "_______")  # used to mark the end of the area to replace
+        end = findExpression(fileLines, endExp)  # used to mark the end of the area to replace
         newFile = updateFile(fileLines, header, start, end)
 
         if histNeeded:  # This needs to be done better. too many branches.

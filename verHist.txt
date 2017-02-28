@@ -1,8 +1,8 @@
 
 Version History     :
 
-Version     Date             Programmer    Description
--------     ---------        ----------    -----------
- 1.0        DDMMMYYYY        johnSmith     Header Updated and Version History cleared.
+Version     Date             Programmer              Description
+-------     ---------        ----------              -----------
+ 1.0        08Feb2017        HeaderReplaceScript     Header Updated and Version History cleared.
 
 ========================================================================================*/

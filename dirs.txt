@@ -1,6 +1,2 @@
-W:\19950205\analysis\final\figures\validation\program
-W:\19950205\analysis\final\figures
-W:\19950205\analysis\final\tables\validation\program
-W:\19950205\analysis\final\tables
-W:\19950205\analysis\final\listings\validation\program
-W:\19950205\analysis\final\listings
+Y:\amp2\itp\amp20101221\analysis\pedfil_2017_bmb\listings
+Y:\amp2\itp\amp20101221\analysis\pedfil_2017_bmb\listings\validation
