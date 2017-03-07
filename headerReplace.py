@@ -70,13 +70,13 @@ def readFile(filePath):
     return lines
 
 
-def findExpression(lines, expr):
+def findExpression(lines, expr, startPos=0):
     """ Searches an array of strings for an expression. returning the line idx that contains it"""
     idx = -1
     if expr == "":
         return idx
 
-    for i in range(len(lines)):
+    for i in range(startPos, len(lines)):
         if expr in lines[i]:
             idx = i
             break  # Line is found, bail from the loop.
@@ -122,7 +122,7 @@ def updateHeaders(directory, headerFile, startExp =  "/*====", endExp = "_______
         if start == -1:
             break  # the start of the header was not found. Skip this file since it's not valid. don't wanna ruin stuff
 
-        end = findExpression(fileLines, endExp)  # used to mark the end of the area to replace
+        end = findExpression(fileLines, endExp, startPos=start)  # used to mark the end of the area to replace
         newFile = updateFile(fileLines, header, start, end)
 
         if histNeeded:  # This needs to be done better. too many branches.

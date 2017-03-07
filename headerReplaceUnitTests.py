@@ -34,6 +34,21 @@ class FindExpressionTests(unittest.TestCase):
         result = findExpression(lines, expression)
         self.assertEqual(result, 0)
 
+    def test_findExpression_startPosition(self):
+        """ test that 'findExpression' will begin searching from a specified position, ignoring matches before that """
+        lines = ['match', 'match', 'match', 'match', 'This is not a Match...', 'neither is this.', 'match']  # length=7
+        expression = 'match'
+        expected = 6
+        result = findExpression(lines, expression, startPos=4)
+        self.assertEqual(result, expected)
+
+    def test_findExpression_matchOnTheStartPos(self):
+        """ test that 'findExpression' will return a match when the start position contains a matchin line. """
+        lines = ['match', 'match', 'match', 'match', 'This is not a Match...', 'neither is this.', 'match']  # length=7
+        expression = 'This is not a Match...'
+        expected = 4
+        result = findExpression(lines, expression, startPos=expected)
+        self.assertEqual(result, expected)
 
 # listAvailableFiles() Test Cases
 class ListAvailableFilesTests(unittest.TestCase):
