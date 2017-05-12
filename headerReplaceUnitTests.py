@@ -50,6 +50,7 @@ class FindExpressionTests(unittest.TestCase):
         result = findExpression(lines, expression, startPos=expected)
         self.assertEqual(result, expected)
 
+
 # listAvailableFiles() Test Cases
 class ListAvailableFilesTests(unittest.TestCase):
     """ A Series of methods designed to test the functionality of ListAvailableFiles in the 'header replace' script """
@@ -110,6 +111,24 @@ class ReadFileTests(unittest.TestCase):
         result = len(lines)
         self.assertEqual(result, 0)
 
+
+# readHeader() Test Cases
+class ReadHeaderFileTests(unittest.TestCase):
+    """ Test cases for ReadHeader function. an extion of readfile, only additional functionality tested. """
+
+    def test_readHeader_strReplaceWhenNotFound(self):
+        """ Test that readHeader will not alter elements of a string if old val not found. """
+        originalLines = readFile('testFiles/stringReplace/readHeader.txt')
+        newLines = readHeader('testFiles/stringReplace/readHeader.txt')
+
+        self.assertEqual(originalLines, newLines)
+
+    def test_readHeader_strReplaceWithFilePathWhenFound(self):
+        """ Test that readHeader will replace a File Path reserved Word when found. """
+        desired = readFile('testFiles/stringReplace/desired.txt')
+        withChanges = readHeader('testFiles/stringReplace/needsChanges.txt')
+
+        self.assertEqual(desired, withChanges)
 
 # WriteFile() Test Cases
 class WriteFileTests(unittest.TestCase):

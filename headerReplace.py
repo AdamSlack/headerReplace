@@ -69,6 +69,14 @@ def readFile(filePath):
             lines.append(l)
     return lines
 
+def readHeader(filePath, sourceFilePath):
+    """ Wrapper for read file. checks for special key values in the header. """
+    lines = readFile(filePath)
+
+    newLines = []
+    for l in lines:
+        newLines.append(str.replace(l, '%FP%', sourceFilePath))
+    return newLines
 
 def findExpression(lines, expr, startPos=0):
     """ Searches an array of strings for an expression. returning the line idx that contains it"""
@@ -110,11 +118,11 @@ def updateHeaders(directory, headerFile, startExp =  "/*====", endExp = "_______
     global histNeeded
     print('Updating headers for files in: ' + directory)
 
-    header = readFile(headerFile)
     fileNames = listAvailableFiles(directory)
     setPermissions(directory, fileNames)
 
     for f in fileNames:  # go through each file in the directory.
+        header = readHeader(headerFile, directory + f)
         path = directory + "\\" + f
         fileLines = readFile(path)
         start = findExpression(fileLines, startExp)  # used to mark the start of the area to replace

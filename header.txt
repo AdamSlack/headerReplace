@@ -1,12 +1,9 @@
 /*=====================================================================================*
 Program Name        :  %M%
+Program File Path   :  %FP%
 SCCS File Path      :  %P%
 Version             :  %I%
 Version Date        :  %G% %U%
 Program Language    :  SAS V9.4
 Operating System    :  SunOS 5.10
 ________________________________________________________________________________________
-
-uyfuyf
-
-uyfutf

@@ -1,0 +1,9 @@
+testFiles/stringReplace/needsChanges.txt
+
+line contains testFiles/stringReplace/needsChanges.txt
+
+
+ testFiles/stringReplace/needsChanges.txtFP%
+
+
+

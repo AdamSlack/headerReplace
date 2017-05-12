@@ -1,2 +1,2 @@
-Y:\amp2\itp\amp20101221\analysis\pedfil_2017_bmb\listings
-Y:\amp2\itp\amp20101221\analysis\pedfil_2017_bmb\listings\validation
+Y:/amp2/itp/amp20101221/analysis/pedfil_2017_bmb/listings
+Y:/amp2/itp/amp20101221/analysis/pedfil_2017_bmb/listings/validation
