@@ -1,0 +1,16 @@
+{
+  "logfile" : {
+    "save_location" : "~/headerReplace",
+    "file_name" : "logFile",
+    "date_stamp_file_name" : true,
+    "time_stamp_file_name" : false
+  },
+
+  "sccs":{
+    "check_in_message" : "File was updated using Header Replace Script. Contact Adam Slack with any Queries."
+  },
+
+  "version_history" : {
+    "clear_message" : "V1.0\t\tHeaderReplaceScript\t\tFile was updated using Header Replace Script.\n"
+  }
+}
